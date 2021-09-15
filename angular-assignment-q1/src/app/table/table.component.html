@@ -1,0 +1,43 @@
+<div class="container-fluid">
+
+    <table class="table table-responsive table-default table-striped table-bordered">
+
+        <thead class="bg-dark" style="color:white; text-align: center;">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">UserID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Body</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let post of posts">
+                <td style="text-align: center;">{{ post.id }}</td>
+                <td style="text-align: center;">{{ post.userId }}</td>
+                <td>{{ post.title}}</td>
+                <td>{{ post.body }}</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <div class="d-flex p-2">
+
+        <ngb-pagination class="flex-grow-1 ng-deep" [maxSize]="5" [rotate]="true" [collectionSize]="collectionSize"
+            [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshPosts()">Pages</ngb-pagination>
+
+        <label style="margin-top:5px; margin-right: 10px;">Records Per page:</label>
+
+        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshPosts()">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="15">15</option>
+            <option [ngValue]="20">20</option>
+            <option [ngValue]="25">25</option>
+            <option [ngValue]="50">50</option>
+        </select>
+
+    </div>
+
+</div>
